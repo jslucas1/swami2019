@@ -3,18 +3,16 @@ const validator = require('validator');
 
 const Game = mongoose.model('Game', {
     home: {
-        type: ObjectId,
+        type: String,
         required: true
     },
     away: {
-        type: ObjectId,
+        type: String,
         required: true
     },
     week: {
         type: Number,
-        required: true
-            
-        
+        required: true     
     },
     date: {
         type: Date,
