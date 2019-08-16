@@ -16,6 +16,14 @@ const Game = mongoose.model('Game', {
             
         
     },
+    date: {
+        type: Date,
+        required: true     
+    },
+    time: {
+        type: Number,
+        required: true     
+    },
     homeScore: {
         type: Number,
         required: true
