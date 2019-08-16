@@ -8,6 +8,9 @@ const port = process.env.PORT || 3000;
 
 app.use(express.json());
 
+// =====================================================
+//                User flow path
+// =====================================================
 app.post('/users', (req, res) => {
     const myUser = new User(req.body);
 
@@ -39,6 +42,43 @@ app.get('/users/:id', (req, res) => {
 
 })
 
+// =====================================================
+//                Game flow path
+// =====================================================
+app.post('/games', (req, res) => {
+    const myGame = new Game(req.body);
+
+    myGame.save().then(() => {
+        res.status(201).send(myGame);
+    }).catch((e) => {
+        res.status(400).send(e);
+    })
+})
+
+app.get('/games', (req, res) => {
+    Game.find({}).then((myGames) => {
+        res.send(myGames);
+    }).catch((e) => {
+        res.status(500).send();
+    })
+})
+
+app.get('/games/:id', (req, res) => {
+    const _id = req.params.id;
+    Game.findById(_id).then((myGame) => {
+        if(!myGame) {
+            return res.status(404).send();
+        } 
+        res.send(myGame)
+    }).catch((e) => {
+        res.status(500).send();
+    })
+
+})
+
+// =====================================================
+//                Team flow path
+// =====================================================
 app.post('/teams', (req, res) => {
     const myTeam = new Team(req.body);
 
