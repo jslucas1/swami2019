@@ -3,6 +3,7 @@ require('./db/mongoose');
 const User = require('./models/user');
 const Team = require('./models/team');
 const Game = require('./models/game');
+const Book = require('./models/book');
 
 const app = express();
 const port = process.env.PORT || 3000;
