@@ -126,14 +126,14 @@ app.post('/books', (req, res) => {
     const myBook = new Book(req.body);
 
     myBook.save().then(() => {
-        res.status(201).send(myGame);
+        res.status(201).send(myBook);
     }).catch((e) => {
         res.status(400).send(e);
     })
 })
 
 app.get('/books', (req, res) => {
-    Game.find({}).then((myBooks) => {
+    Book.find({}).then((myBooks) => {
         res.send(myBooks);
     }).catch((e) => {
         res.status(500).send();
@@ -142,8 +142,8 @@ app.get('/books', (req, res) => {
 
 app.get('/books/:id', (req, res) => {
     const _id = req.params.id;
-    Game.findById(_id).then((myBook) => {
-        if(!myGame) {
+    Book.findById(_id).then((myBook) => {
+        if(!myBook) {
             return res.status(404).send();
         } 
         res.send(myBook)
