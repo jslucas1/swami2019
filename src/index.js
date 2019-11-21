@@ -140,6 +140,15 @@ app.get('/books', (req, res) => {
     })
 })
 
+app.get('/books/:cwid', (req, res) => {
+    const myCwid = req.params.cwid;
+    Book.find({cwid: myCwid}).then((myBooks) => {
+        res.send(myBooks);
+    }).catch((e) => {
+        res.status(500).send();
+    })
+})
+
 app.get('/books/:id', (req, res) => {
     const _id = req.params.id;
     Book.findById(_id).then((myBook) => {
