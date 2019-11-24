@@ -7,6 +7,11 @@ const Book = mongoose.model('Book', {
         trim: true,
         required: true
     },
+    title: {
+        type: String,
+        trim: true,
+        required: true
+    },
     cover: {
         type: String,
         required: true,
