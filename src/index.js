@@ -172,6 +172,15 @@ app.delete('/books/:id', (req, res) => {
     })
 })
 
+app.put('/books/:id/:cwid', (req, res) => {
+    const myCwid = req.params.cwid;
+    const id = req.parms._id;
+    Book.findOneAndUpdate({_id: id, cwid: myCwid}).then((myBooks) => {
+        res.send(myBooks);
+    }).catch((e) => {
+        res.status(500).send();
+    })
+})
 
 app.listen(port, () => {
     console.log('Server is up on port ' + port);
