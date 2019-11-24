@@ -159,19 +159,19 @@ app.get('/books/:id', (req, res) => {
     }).catch((e) => {
         res.status(500).send();
     })
-
-    app.delete('/books/:id', (req, res) => {
-        const _id = req.params.id;
-        Book.findByIdAndRemove(_id).then((myBook) => {
-            if(!myBook) {
-                return res.status(404).send();
-            } 
-            res.send(myBook)
-        }).catch((e) => {
-            res.status(500).send();
-        })
-
 })
+app.delete('/books/:id', (req, res) => {
+    const _id = req.params.id;
+    Book.findByIdAndRemove(_id).then((myBook) => {
+        if(!myBook) {
+            return res.status(404).send();
+        } 
+        res.send(myBook)
+    }).catch((e) => {
+        res.status(500).send();
+    })
+})
+
 
 app.listen(port, () => {
     console.log('Server is up on port ' + port);
