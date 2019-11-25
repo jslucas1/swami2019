@@ -175,10 +175,10 @@ app.delete('/books/:id', (req, res) => {
 app.put('/books/:id', (req, res) => {
     //const myCwid = req.params.cwid;
     const myBook = new Book(req.body);
-    const myid = req.parms.id;
+    const _id = req.parms.id;
 
     Console.log("just before update");
-    Book.findOneAndUpdate({"_id": myid}, {"$set": {"title": myBook.title,
+    Book.findOneAndUpdate({"_id": _id}, {"$set": {"title": myBook.title,
                                                     "cover": myBook.cover,
                                                     "isbn": myBook.isbn,
                                                     "author": myBook.author,
