@@ -175,10 +175,10 @@ app.delete('/books/:id', (req, res) => {
 app.put('/books/:cwid/:id', (req, res) => {
     const myCwid = req.params.cwid;
     const myBook = new Book(req.body);
-    const id = req.parms._id;
+    const myid = req.parms.id;
 
 
-    Book.findOneAndUpdate({_id: id, cwid: myCwid}, {title: myBook.title,
+    Book.findOneAndUpdate({_id: myid, cwid: myCwid}, {title: myBook.title,
                                                     cover: myBook.cover,
                                                     isbn: myBook.isbn,
                                                     author: myBook.author,
