@@ -178,18 +178,17 @@ app.put('/books/:cwid/:id', (req, res) => {
     const myid = req.parms.id;
 
 
-    Book.findOneAndUpdate({_id: myid}, {title: myBook.title,
-                                                    cover: myBook.cover,
-                                                    isbn: myBook.isbn,
-                                                    author: myBook.author,
-                                                    copies: myBook.copies,
-                                                    genre: myBook.genre,
-                                                    length: myBook.length}, 
+    Book.findOneAndUpdate({"_id": myid}, {"$set": {"title": myBook.title,
+                                                    "cover": myBook.cover,
+                                                    "isbn": myBook.isbn,
+                                                    "author": myBook.author,
+                                                    "copies": myBook.copies,
+                                                    "genre": myBook.genre,
+                                                    "length": myBook.length}}, 
         {new: true}).then((myBooks) => {
         res.send(myBooks);
     }).catch((e) => {
-        res.send(myCwid + " " + myid + " " + myBook.title + " " + myBook.author)
-        //res.status(500).send();
+        res.status(500).send();
     })
 })
 
