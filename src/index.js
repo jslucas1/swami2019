@@ -178,7 +178,7 @@ app.put('/books/:cwid/:id', (req, res) => {
     const myid = req.parms.id;
 
 
-    Book.findOneAndUpdate({_id: myid, cwid: myCwid}, {title: myBook.title,
+    Book.findOneAndUpdate({_id: myid}, {title: myBook.title,
                                                     cover: myBook.cover,
                                                     isbn: myBook.isbn,
                                                     author: myBook.author,
