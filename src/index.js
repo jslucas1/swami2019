@@ -172,8 +172,8 @@ app.delete('/books/:id', (req, res) => {
     })
 })
 
-app.put('/books/:cwid/:id', (req, res) => {
-    const myCwid = req.params.cwid;
+app.put('/books/:id', (req, res) => {
+    //const myCwid = req.params.cwid;
     const myBook = new Book(req.body);
     const myid = req.parms.id;
 
