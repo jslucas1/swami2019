@@ -177,7 +177,7 @@ app.put('/books/:id', (req, res) => {
     const myBook = new Book(req.body);
     const myid = req.parms.id;
 
-
+    Console.log("just before update");
     Book.findOneAndUpdate({"_id": myid}, {"$set": {"title": myBook.title,
                                                     "cover": myBook.cover,
                                                     "isbn": myBook.isbn,
@@ -188,6 +188,7 @@ app.put('/books/:id', (req, res) => {
         {new: true}).then((myBook) => {
         res.send(myBook);
     }).catch((e) => {
+        Console.log("in the error");
         res.status(500).send();
     })
 })
