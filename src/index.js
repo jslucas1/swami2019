@@ -185,7 +185,7 @@ app.put('/books/:cwid/:id', (req, res) => {
                                                     copies: myBook.copies,
                                                     genre: myBook.genre,
                                                     length: myBook.length}, 
-        new: true}).then((myBooks) => {
+        {new: true}).then((myBooks) => {
         res.send(myBooks);
     }).catch((e) => {
         res.status(500).send();
