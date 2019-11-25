@@ -188,7 +188,8 @@ app.put('/books/:cwid/:id', (req, res) => {
         {new: true}).then((myBooks) => {
         res.send(myBooks);
     }).catch((e) => {
-        res.status(500).send();
+        res.send(myCwid + " " + myid + " " + myBook.title + " " + myBook.author)
+        //res.status(500).send();
     })
 })
 
