@@ -172,10 +172,20 @@ app.delete('/books/:id', (req, res) => {
     })
 })
 
-app.put('/books/:id/:cwid', (req, res) => {
+app.put('/books/:cwid/:id', (req, res) => {
     const myCwid = req.params.cwid;
+    const myBook = new Book(req.body);
     const id = req.parms._id;
-    Book.findOneAndUpdate({_id: id, cwid: myCwid}).then((myBooks) => {
+
+
+    Book.findOneAndUpdate({_id: id, cwid: myCwid}, {title: myBook.title,
+                                                    cover: myBook.cover,
+                                                    isbn: myBook.isbn,
+                                                    author: myBook.author,
+                                                    copies: myBook.copies,
+                                                    genre: myBook.genre,
+                                                    length: myBook.length}, 
+        new: true}).then((myBooks) => {
         res.send(myBooks);
     }).catch((e) => {
         res.status(500).send();
