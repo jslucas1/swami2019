@@ -125,6 +125,9 @@ app.get('/teams', (req, res) => {
 app.post('/books', (req, res) => {
     const myBook = new Book(req.body);
 
+    console.log("just before new save");
+    console.log("title is " + myBook.title);
+
     myBook.save().then(() => {
         res.status(201).send(myBook);
     }).catch((e) => {
