@@ -33,6 +33,10 @@ const User = mongoose.model('User', {
         type: String,
         required: true,
         trim: true
+    },
+    wallet: {
+        type: Number,
+        required: true
     }
 });
 
