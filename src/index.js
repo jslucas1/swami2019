@@ -44,6 +44,15 @@ app.get('/users/:id', (req, res) => {
 
 })
 
+app.get('/users/:email', (req, res) => {
+    const myEmail = req.params.email;
+    User.find({email: myEmail}).then((myUser) => {
+        res.send(myUser);
+    }).catch((e) => {
+        res.status(500).send();
+    })
+})
+
 // =====================================================
 //                Game flow path
 // =====================================================
