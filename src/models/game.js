@@ -31,8 +31,6 @@ const Game = mongoose.model('Game', {
         required: true
     },
     winner: {
-        type: Number,
-        required: true,
         type: String,
         required: true,
         trim: true,
