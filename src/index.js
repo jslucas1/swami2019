@@ -24,7 +24,7 @@ app.post('/users', (req, res) => {
 })
 
 app.get('/users', (req, res) => {
-    User.find({}).then((myUsers) => {
+    User.find({}).sort( { wallet: -1 } ).then((myUsers) => {
         res.send(myUsers);
     }).catch((e) => {
         res.status(500).send();
