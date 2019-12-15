@@ -290,19 +290,19 @@ app.get('/wagers/:id', (req, res) => {
         res.status(500).send();
     })
 })
-app.get('/wagers/week/:week/:id', (req, res) => {
-    const myid = new ObjectID(req.params.id);
+app.get('/wagers/week/:week/:user', (req, res) => {
+    const myUser = new ObjectID(req.params.user);
     const myWeek = req.params.week;
     const currWeek = "2";
     if(myWeek == 0)
     { 
-        Wager.find({"week": currWeek, "_id": myid}).then((myWagers) => {
+        Wager.find({week: currWeek, user: myUser}).then((myWagers) => {
             res.send(myWagers);
         }).catch((e) => {
             res.status(500).send();
     })
     } else {
-        Wager.find({"week": myWeek, "_id": myid}).then((myWagers) => {
+        Wager.find({week: myWeek, user: myUser}).then((myWagers) => {
             res.send(myWagers);
         }).catch((e) => {
             res.status(500).send();
