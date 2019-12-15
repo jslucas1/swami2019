@@ -22,7 +22,12 @@ const Wager = mongoose.model('Wager', {
     amount: {
         type: Number,
         required: true
-    }
+    },
+    week: {
+        type: Number,
+        required: true
+    },
+
 });
 
 module.exports = Wager;
