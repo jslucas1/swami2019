@@ -294,8 +294,6 @@ app.get('/wagers/week/:week/:user', (req, res) => {
     const myUser = req.params.user;
     const myWeek = req.params.week;
     const currWeek = "2";
-    console.log(myUser);
-    console.log(myWeek);
 
     if(myWeek == 0)
     { 
@@ -305,12 +303,9 @@ app.get('/wagers/week/:week/:user', (req, res) => {
             res.status(500).send();
     })
     } else {
-        console.log("In the else clause about to call the find");
         Wager.find({"week": myWeek, "user": myUser}).then((myWagers) => {
             res.send(myWagers);
         }).catch((e) => {
-            console.log("and here is the error");
-            console.log(e);
             res.status(500).send();
     })  
     }
