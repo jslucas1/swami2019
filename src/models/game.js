@@ -10,6 +10,10 @@ const Game = mongoose.model('Game', {
         type: String,
         required: true
     },
+    line: {
+        type: Number,
+        required: true
+    },
     week: {
         type: Number,
         required: true     
