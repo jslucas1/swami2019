@@ -254,7 +254,7 @@ app.post('/wagers', (req, res) => {
 })
 
 app.get('/wagers', (req, res) => {
-    Game.find({}).then((myWagers) => {
+    Wager.find({}).then((myWagers) => {
         res.send(myWagers);
     }).catch((e) => {
         res.status(500).send();
