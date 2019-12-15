@@ -54,6 +54,25 @@ app.get('/users/email/:email', (req, res) => {
     })
 })
 
+app.put('/users/:id', (req, res) => {
+    const myUser = new Book(req.body);
+    const myId = myUser._id;
+    console.log("just before update");
+    console.log("id is " + myId);
+    console.log("name is " + myUser.name);
+    Book.findOneAndUpdate({"_id": myId}, {"$set": {"name": myUser.name,
+                                                    "password": myUser.password,
+                                                    "email": myUser.email,
+                                                    "nickname": myUser.nickname,
+                                                    "wallet": myUser.wallet}}, 
+        {new: true}).then((myUser) => {
+        res.send(myUser);
+    }).catch((e) => {
+        console.log("in the error");
+        res.status(500).send();
+    })
+})
+
 // =====================================================
 //                Game flow path
 // =====================================================
