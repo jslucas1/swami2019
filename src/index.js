@@ -291,12 +291,12 @@ app.get('/wagers/:id', (req, res) => {
     })
 })
 app.get('/wagers/week/:week/:id', (req, res) => {
-    const _id = req.params.id;
+    const myid = req.params.id;
     const myWeek = req.params.week;
     const currWeek = "2";
     if(myWeek == 0)
     { 
-        Wager.find({week: currWeek, id: _id}).then((myWagers) => {
+        Wager.find({week: currWeek, _id: myid}).then((myWagers) => {
             res.send(myWagers);
         }).catch((e) => {
             res.status(500).send();
