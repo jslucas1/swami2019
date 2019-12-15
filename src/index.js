@@ -91,8 +91,8 @@ app.get('/games/week/:week', (req, res) => {
     const myWeek = req.params.week;
     const currWeek = "2";
     if(myWeek == 0)
-    { myWeek = currWeek
-        Game.find({week: myWeek}).then((myGames) => {
+    { 
+        Game.find({week: currWeek}).then((myGames) => {
             res.send(myGames);
         }).catch((e) => {
             res.status(500).send();
