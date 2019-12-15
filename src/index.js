@@ -296,7 +296,7 @@ app.get('/wagers/week/:week/:id', (req, res) => {
     const currWeek = "2";
     if(myWeek == 0)
     { 
-        Wager.find({week: currWeek, _id: myid}).then((myWagers) => {
+        Wager.find({week: currWeek, id: myid}).then((myWagers) => {
             res.send(myWagers);
         }).catch((e) => {
             res.status(500).send();
