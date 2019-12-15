@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const validator = require('validator');
 
 const Game = mongoose.model('Game', {
-    favoriate: {
+    favorite: {
         type: String,
         required: true
     },
