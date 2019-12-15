@@ -260,8 +260,35 @@ app.get('/wagers', (req, res) => {
         res.status(500).send();
     })
 })
-
-
+app.get('/wagers/:id', (req, res) => {
+    const _id = req.params.id;
+    Wager.findById(_id).then((myWager) => {
+        if(!myWager) {
+            return res.status(404).send();
+        } 
+        res.send(myWager)
+    }).catch((e) => {
+        res.status(500).send();
+    })
+})
+app.get('/wagers/week/:week', (req, res) => {
+    const myWeek = req.params.week;
+    const currWeek = "2";
+    if(myWeek == 0)
+    { 
+        Wager.find({week: currWeek}).then((myWagers) => {
+            res.send(myWagers);
+        }).catch((e) => {
+            res.status(500).send();
+    })
+    } else {
+        Wager.find({week: myWeek}).then((myWagers) => {
+            res.send(myWagers);
+        }).catch((e) => {
+            res.status(500).send();
+    })  
+    }
+})
 app.listen(port, () => {
     console.log('Server is up on port ' + port);
 })
