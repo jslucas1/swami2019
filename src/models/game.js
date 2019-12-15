@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 const validator = require('validator');
 
 const Game = mongoose.model('Game', {
-    home: {
+    favoriate: {
         type: String,
         required: true
     },
-    away: {
+    underdog: {
         type: String,
         required: true
     },
@@ -33,6 +33,9 @@ const Game = mongoose.model('Game', {
     awayScore: {
         type: Number,
         required: true
+    },
+    homeTeam: {
+        type: String
     },
     winner: {
         type: String,
