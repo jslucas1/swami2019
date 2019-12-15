@@ -4,6 +4,7 @@ const User = require('./models/user');
 const Team = require('./models/team');
 const Game = require('./models/game');
 const Book = require('./models/book');
+const Wager = require('./models/wager');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -238,6 +239,28 @@ app.put('/books/:id', (req, res) => {
         res.status(500).send();
     })
 })
+
+// =====================================================
+//                Wager flow path
+// =====================================================
+app.post('/wagers', (req, res) => {
+    const myWager = new Wager(req.body);
+
+    myWager.save().then(() => {
+        res.status(201).send(myWager);
+    }).catch((e) => {
+        res.status(400).send(e);
+    })
+})
+
+app.get('/wagers', (req, res) => {
+    Game.find({}).then((myWagers) => {
+        res.send(myWagers);
+    }).catch((e) => {
+        res.status(500).send();
+    })
+})
+
 
 app.listen(port, () => {
     console.log('Server is up on port ' + port);
