@@ -296,13 +296,13 @@ app.get('/wagers/week/:week/:id', (req, res) => {
     const currWeek = "2";
     if(myWeek == 0)
     { 
-        Wager.find({week: currWeek, _id: ObjectId(myid)}).then((myWagers) => {
+        Wager.find({"week": currWeek, "_id": ObjectId(myid)}).then((myWagers) => {
             res.send(myWagers);
         }).catch((e) => {
             res.status(500).send();
     })
     } else {
-        Wager.find({week: myWeek, _id: ObjectId(myid)}).then((myWagers) => {
+        Wager.find({"week": myWeek, "_id": ObjectId(myid)}).then((myWagers) => {
             res.send(myWagers);
         }).catch((e) => {
             res.status(500).send();
