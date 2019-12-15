@@ -55,7 +55,7 @@ app.get('/users/email/:email', (req, res) => {
 })
 
 app.put('/users/:id', (req, res) => {
-    const myUser = new Book(req.body);
+    const myUser = new User(req.body);
     const myId = myUser._id;
     console.log("just before update");
     console.log("id is " + myId);
