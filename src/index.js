@@ -147,6 +147,18 @@ app.get('/teams', (req, res) => {
     })
 })
 
+app.get('/teams/:id', (req, res) => {
+    const _id = req.params.id;
+    Team.findById(_id).then((myTeam) => {
+        if(!myTeam) {
+            return res.status(404).send();
+        } 
+        res.send(myTeam)
+    }).catch((e) => {
+        res.status(500).send();
+    })
+})
+
 // =====================================================
 //                Book flow path
 // =====================================================
