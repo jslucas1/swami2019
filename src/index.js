@@ -291,7 +291,7 @@ app.get('/wagers/:id', (req, res) => {
     })
 })
 app.get('/wagers/week/:week/:id', (req, res) => {
-    const myid = req.params.id;
+    const myid = new ObjectID(req.params.id);
     const myWeek = req.params.week;
     const currWeek = "2";
     if(myWeek == 0)
