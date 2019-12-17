@@ -97,6 +97,26 @@ app.post('/games', (req, res) => {
     })
 })
 
+app.put('/games/:id', (req, res) => {
+    const myGame = new Game(req.body);
+    const myId = myGame._id;
+    Game.findOneAndUpdate({"_id": myId}, {"$set": {"favorite": myGame.favorite,
+                                                   "underdog": myGame.underdog,
+                                                   "line": myGame.line,
+                                                   "week": myGame.week,
+                                                   "date": myGame.date,
+                                                   "homeScore": myGame.homeScore,
+                                                   "awayScore": myGame.awayScore,
+                                                   "winner": myGame.winner,
+                                                   "homeTeam": myGame.homeTeam
+                                                }}, 
+        {new: true}).then((myGame) => {
+        res.send(myGame);
+    }).catch((e) => {
+        res.status(500).send();
+    })
+})
+
 app.get('/games', (req, res) => {
     Game.find({}).then((myGames) => {
         res.send(myGames);
@@ -159,6 +179,18 @@ app.post('/teams', (req, res) => {
         res.status(201).send(myTeam);
     }).catch((e) => {
         res.status(400).send(e);
+    })
+})
+app.put('/teams/:id', (req, res) => {
+    const myTeam = new Team(req.body);
+    const myId = myTeam._id;
+    Team.findOneAndUpdate({"_id": myId}, {"$set": {"name": myTeam.name,
+                                                    "league": myTeam.league,
+                                                    "conference": myTeam.conference}}, 
+        {new: true}).then((myTeam) => {
+        res.send(myTeam);
+    }).catch((e) => {
+        res.status(500).send();
     })
 })
 
@@ -270,14 +302,8 @@ app.delete('/books/:id', (req, res) => {
 })
 
 app.put('/books/:id', (req, res) => {
-    //const myCwid = req.params.cwid;
     const myBook = new Book(req.body);
     const myId = myBook._id;
-    //const _id = req.parms.id;
-
-    console.log("just before update");
-    console.log("id is " + myId);
-    console.log("title is " + myBook.title);
     Book.findOneAndUpdate({"_id": myId}, {"$set": {"title": myBook.title,
                                                     "cover": myBook.cover,
                                                     "isbn": myBook.isbn,
