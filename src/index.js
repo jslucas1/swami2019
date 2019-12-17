@@ -72,6 +72,17 @@ app.put('/users/:id', (req, res) => {
         res.status(500).send();
     })
 })
+app.delete('/users/:id', (req, res) => {
+    const _id = req.params.id;
+    User.findByIdAndRemove(_id).then((myUser) => {
+        if(!myUser) {
+            return res.status(404).send();
+        } 
+        res.send(myUser)
+    }).catch((e) => {
+        res.status(500).send();
+    })
+})
 
 // =====================================================
 //                Game flow path
@@ -126,6 +137,18 @@ app.get('/games/week/:week', (req, res) => {
     }
 })
 
+app.delete('/games/:id', (req, res) => {
+    const _id = req.params.id;
+    Game.findByIdAndRemove(_id).then((myGame) => {
+        if(!myGame) {
+            return res.status(404).send();
+        } 
+        res.send(myGame)
+    }).catch((e) => {
+        res.status(500).send();
+    })
+})
+
 // =====================================================
 //                Team flow path
 // =====================================================
@@ -170,6 +193,17 @@ app.get('/teams', (req, res) => {
 app.get('/teams/:id', (req, res) => {
     const _id = req.params.id;
     Team.findById(_id).then((myTeam) => {
+        if(!myTeam) {
+            return res.status(404).send();
+        } 
+        res.send(myTeam)
+    }).catch((e) => {
+        res.status(500).send();
+    })
+})
+app.delete('/teams/:id', (req, res) => {
+    const _id = req.params.id;
+    Team.findByIdAndRemove(_id).then((myTeam) => {
         if(!myTeam) {
             return res.status(404).send();
         } 
@@ -310,6 +344,18 @@ app.get('/wagers/week/:week/:user', (req, res) => {
     })  
     }
 })
+app.delete('/wagers/:id', (req, res) => {
+    const _id = req.params.id;
+    Wager.findByIdAndRemove(_id).then((myWager) => {
+        if(!myWager) {
+            return res.status(404).send();
+        } 
+        res.send(myWager)
+    }).catch((e) => {
+        res.status(500).send();
+    })
+})
+
 app.listen(port, () => {
     console.log('Server is up on port ' + port);
 })
