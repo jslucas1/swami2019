@@ -26,11 +26,11 @@ const Game = mongoose.model('Game', {
         type: Number,
         required: true     
     },
-    homeScore: {
+    favoriteScore: {
         type: Number,
         required: true
     },
-    awayScore: {
+    underdogScore: {
         type: Number,
         required: true
     },
