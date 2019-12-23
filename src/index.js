@@ -355,41 +355,50 @@ app.get('/wagers/:id', (req, res) => {
 app.get('/wagers/week/:week/:user', (req, res) => {
     const myUser = req.params.user;
     const myWeek = req.params.week;
-    const currWeek = "2";
+    Week.findOne({"current": true}).then((myCurrWeekObj) =>{
+        if(myWeek == 0)
+        { 
+            const currWeek = myCurrWeekObj.weekNumber;
+            Wager.find({"week": currWeek, "user": myUser}).then((myWagers) => {
+                res.send(myWagers);
+            }).catch((e) => {
+                res.status(500).send();
+        })
+        } else {
+            Wager.find({"week": myWeek, "user": myUser}).then((myWagers) => {
+                res.send(myWagers);
+            }).catch((e) => {
+                res.status(500).send();
+        })  
+        }
 
-    if(myWeek == 0)
-    { 
-        Wager.find({"week": currWeek, "user": myUser}).then((myWagers) => {
-            res.send(myWagers);
-        }).catch((e) => {
-            res.status(500).send();
-    })
-    } else {
-        Wager.find({"week": myWeek, "user": myUser}).then((myWagers) => {
-            res.send(myWagers);
-        }).catch((e) => {
-            res.status(500).send();
-    })  
-    }
+    }).catch((e) => {
+        res.status(500).send();
+        })
 })
 app.get('/wagers/week/:week', (req, res) => {
     const myWeek = req.params.week;
-    const currWeek = "2";
+    Week.findOne({"current": true}).then((myCurrWeekObj) => {
+        if(myWeek == 0)
+        { 
+            const currWeek = myCurrWeekObj.weekNumber;
+            Wager.find({"week": currWeek}).then((myWagers) => {
+                res.send(myWagers);
+            }).catch((e) => {
+                res.status(500).send();
+            })
+        } else {
+            Wager.find({"week": myWeek}).then((myWagers) => {
+                res.send(myWagers);
+            }).catch((e) => {
+                res.status(500).send();
+            })  
+        }
 
-    if(myWeek == 0)
-    { 
-        Wager.find({"week": currWeek}).then((myWagers) => {
-            res.send(myWagers);
-        }).catch((e) => {
-            res.status(500).send();
-    })
-    } else {
-        Wager.find({"week": myWeek}).then((myWagers) => {
-            res.send(myWagers);
-        }).catch((e) => {
-            res.status(500).send();
-    })  
-    }
+    }).catch((e) => {
+        res.status(500).send();
+        })
+   
 })
 app.delete('/wagers/:id', (req, res) => {
     const _id = req.params.id;
