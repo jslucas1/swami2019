@@ -5,6 +5,7 @@ const Team = require('./models/team');
 const Game = require('./models/game');
 const Book = require('./models/book');
 const Wager = require('./models/wager');
+const Week = require('./models/week');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -186,7 +187,8 @@ app.put('/teams/:id', (req, res) => {
     const myId = myTeam._id;
     Team.findOneAndUpdate({"_id": myId}, {"$set": {"name": myTeam.name,
                                                     "league": myTeam.league,
-                                                    "conference": myTeam.conference}}, 
+                                                    "conference": myTeam.conference,
+                                                    "current": myTeam.current}},
         {new: true}).then((myTeam) => {
         res.send(myTeam);
     }).catch((e) => {
@@ -400,6 +402,71 @@ app.delete('/wagers/:id', (req, res) => {
         res.status(500).send();
     })
 })
+
+// =====================================================
+//                Week flow path
+// =====================================================
+app.post('/weeks', (req, res) => {
+    const myWeek = new Week(req.body);
+
+    myWeek.save().then(() => {
+        res.status(201).send(myWeek);
+    }).catch((e) => {
+        res.status(400).send(e);
+    })
+})
+app.put('/weeks/:id', (req, res) => {
+    const myWeek = new Week(req.body);
+    const myId = myWeek._id;
+    Team.findOneAndUpdate({"_id": myId}, {"$set": {"weekNumber": myWeek.weekNumber,
+                                                    "beginDt": myWeek.beginDt,
+                                                    "endDt": myWeek.endDt}}, 
+        {new: true}).then((myWeek) => {
+        res.send(myWeek);
+    }).catch((e) => {
+        res.status(500).send();
+    })
+})
+
+app.get('/weeks', (req, res) => {
+    Week.find({}).then((myWeeks) => {
+        res.send(myWeeks);
+    }).catch((e) => {
+        res.status(500).send();
+    })
+})
+
+app.get('/weeks/current', (req, res) => {
+    Week.findOne({"current": true}).then((myWeek) => {
+        res.send(myWeek);
+    }).catch((e) => {
+        res.status(500).send();
+    })
+})
+
+app.get('/weeks/:id', (req, res) => {
+    const _id = req.params.id;
+    Team.findById(_id).then((myWeek) => {
+        if(!myWeek) {
+            return res.status(404).send();
+        } 
+        res.send(myWeek)
+    }).catch((e) => {
+        res.status(500).send();
+    })
+})
+app.delete('/weeks/:id', (req, res) => {
+    const _id = req.params.id;
+    Team.findByIdAndRemove(_id).then((myWeek) => {
+        if(!myWeek) {
+            return res.status(404).send();
+        } 
+        res.send(myWeek)
+    }).catch((e) => {
+        res.status(500).send();
+    })
+})
+
 
 app.listen(port, () => {
     console.log('Server is up on port ' + port);
