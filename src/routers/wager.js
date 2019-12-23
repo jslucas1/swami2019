@@ -1,5 +1,6 @@
 const express = require('express')
 const Wager = require('../models/wager');
+const Week = require('../models/week');
 const router = new express.Router()
 
 // =====================================================
