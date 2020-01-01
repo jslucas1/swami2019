@@ -37,7 +37,15 @@ const User = mongoose.model('User', {
     wallet: {
         type: Number,
         required: true
+    },
+    wagerAvlb: {
+        type: Boolean,
+        default: true
+    },
+    wagerOverride: {
+        type: Boolean
     }
+
 });
 
 module.exports = User;

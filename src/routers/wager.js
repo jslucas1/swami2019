@@ -1,6 +1,7 @@
 const express = require('express')
 const Wager = require('../models/wager');
 const Week = require('../models/week');
+const Game = require('../models/game');
 const router = new express.Router()
 
 // =====================================================
@@ -93,5 +94,6 @@ router.delete('/wagers/:id', (req, res) => {
         res.status(500).send();
     })
 })
+
 
 module.exports = router
