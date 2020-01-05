@@ -51,7 +51,7 @@ router.put('/users/:id', (req, res) => {
     console.log("just before update");
     console.log("id is " + myId);
     console.log("name is " + myUser.name);
-    Book.findOneAndUpdate({"_id": myId}, {"$set": {"name": myUser.name,
+    User.findOneAndUpdate({"_id": myId}, {"$set": {"name": myUser.name,
                                                     "password": myUser.password,
                                                     "email": myUser.email,
                                                     "nickname": myUser.nickname,
