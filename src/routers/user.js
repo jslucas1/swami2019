@@ -55,7 +55,7 @@ router.put('/users/:id', (req, res) => {
     console.log("id is " + myId);
     console.log("name is " + myUser.name);
     console.log("email is : "+ myUser.email);
-    /*
+    
     User.findOneAndUpdate({"_id": myId}, {"$set": {"name": myUser.name,
                                                     "password": myUser.password,
                                                     "email": myUser.email,
@@ -67,7 +67,7 @@ router.put('/users/:id', (req, res) => {
         console.log("in the error");
         res.status(500).send();
     })
-    */
+    
 })
 router.delete('/users/:id', (req, res) => {
     const _id = req.params.id;
