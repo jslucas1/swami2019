@@ -38,10 +38,6 @@ const User = mongoose.model('User', {
         type: Number,
         required: true
     },
-    wagerAvlb: {
-        type: Boolean,
-        default: true
-    },
     wagerOverride: {
         type: Boolean
     }
