@@ -46,6 +46,7 @@ router.get('/users/email/:email', (req, res) => {
 })
 
 router.put('/users/:id', (req, res) => {
+    console.log(req.body);
     const myUser = new User(req.body);
     const myId = myUser._id;
     console.log("The user object sent in is : " + myUser);
