@@ -48,6 +48,7 @@ router.get('/users/email/:email', (req, res) => {
 router.put('/users/:id', (req, res) => {
     const myUser = new User(req.body);
     const myId = myUser._id;
+    console.log("The user object sent in is : " + myUser);
     console.log("just before update");
     console.log("id is " + myId);
     console.log("name is " + myUser.name);
