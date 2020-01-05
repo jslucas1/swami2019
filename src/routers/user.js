@@ -49,9 +49,12 @@ router.put('/users/:id', (req, res) => {
     const myUser = new User(req.body);
     const myId = myUser._id;
     console.log("The user object sent in is : " + myUser);
+    console.log("the request that came in" + req.body);
     console.log("just before update");
     console.log("id is " + myId);
     console.log("name is " + myUser.name);
+    console.log("email is : "+ myUser.email);
+    /*
     User.findOneAndUpdate({"_id": myId}, {"$set": {"name": myUser.name,
                                                     "password": myUser.password,
                                                     "email": myUser.email,
@@ -63,6 +66,7 @@ router.put('/users/:id', (req, res) => {
         console.log("in the error");
         res.status(500).send();
     })
+    */
 })
 router.delete('/users/:id', (req, res) => {
     const _id = req.params.id;
